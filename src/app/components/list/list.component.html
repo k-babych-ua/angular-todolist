@@ -1,0 +1,10 @@
+<div>
+   <app-item 
+      *ngFor="let item of toDoItems" 
+      [toDoItem]="item" 
+      (deleteItem)="deleteItem($event)">
+   </app-item>
+   <app-new-item (newItem)="createNewItem($event)">
+
+   </app-new-item>
+</div>
