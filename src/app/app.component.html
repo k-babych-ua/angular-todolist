@@ -1,0 +1,28 @@
+<div>
+  <div>
+    <h1>{{title}}</h1>
+  </div>
+
+  <div>
+    <ul>
+      <li *ngFor="let item of todoItems">
+        <div [class.completed]="item.status === true">
+          <label> 
+            <input type="checkbox" [(ngModel)]="item.status"> {{item.id}} - {{item.text}}
+            <button (click)="deleteItem(item.id)">x</button>
+          </label>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <input type="text" placeholder="title" [(ngModel)]="newTitle">
+    <input type="text" placeholder="text" [(ngModel)]="newText">
+    <button (click)="addNewItem()">+</button>
+  </div>
+
+  <button (click)="show()">
+    show in console
+  </button>
+</div>
