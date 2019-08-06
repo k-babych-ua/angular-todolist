@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { IToDoItem } from 'src/app/models/entities/IToDoItem';
+import { TodoItemsService } from 'src/app/services/todo-items.service';
 
 @Component({
   selector: 'app-list',
@@ -8,11 +9,14 @@ import { IToDoItem } from 'src/app/models/entities/IToDoItem';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  @Input() toDoItems: IToDoItem[];
+  toDoItems: IToDoItem[];
 
-  constructor() { }
+  constructor(private toDoItemsService: TodoItemsService) { }
 
   ngOnInit() {
+    this.toDoItemsService.getData(20).then(data => {
+      this.toDoItems = data;
+    });
   }
 
   show(): void {
