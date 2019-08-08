@@ -14,24 +14,36 @@ export class ListComponent implements OnInit {
   constructor(private toDoItemsService: TodoItemsService) { }
 
   ngOnInit() {
-    this.toDoItemsService.getData(20).then(data => {
+    this.getData();
+  }
+
+  public show(): void {
+    console.log(this.toDoItems);
+  }
+
+  public getData(): void {
+    this.toDoItemsService.getData(15).then(data => {
       this.toDoItems = data;
     });
   }
 
-  show(): void {
-    console.log(this.toDoItems);
+  public createNewItem(newItem: IToDoItem): void {
+    this.toDoItemsService.createItem(newItem)
+      .then(newId => {
+        newItem.id = newId;
+        console.log(newItem);
+        this.toDoItems.push(newItem);
+      })
+    
   }
 
-  createNewItem(newItem: IToDoItem): void {
-    this.toDoItems.push(newItem);
-  }
-
-  deleteItem(id: number): void {
+  public deleteItem(id: number): void {
     const index = this.toDoItems
       .findIndex(el => el.id === id);
 
-    if (index > -1)
+    if (index > -1) {
+      this.toDoItemsService.deleteItem(id);
       this.toDoItems.splice(index, 1); 
+    }
   }
 }

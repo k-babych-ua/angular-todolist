@@ -1,6 +1,8 @@
-<div [class.completed]="toDoItem.status === ToDoItemStatus.Completed" class="round">
+<div [class.completed]="toDoItem.status === ToDoItemStatus.Completed" class="todo-item">
+   <label class="container">{{toDoItem.id}} - {{toDoItem.title}}
    <input type="checkbox" [ngModel]="toDoItem.status === ToDoItemStatus.Completed"
       (change)="completeThisItem($event && $event.target && $event.target.checked)">
-   <label class="text"> {{toDoItem.id}} - {{toDoItem.title}} </label>
-   <button (click)="deleteThisItem()">x</button>
+   <span class="checkmark"></span>
+   </label>
+   <button class="btn" (click)="deleteThisItem()"><i class="fa fa-trash"></i></button>
 </div>

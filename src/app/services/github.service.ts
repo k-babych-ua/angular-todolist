@@ -5,7 +5,7 @@ import { IUser } from '../models/entities/IUser';
   providedIn: 'root'
 })
 export class GithubService {
-  private baseUrl:string = "https://github.com/";
+  private baseUrl:string = "https://github.com";
 
   constructor() { }
 

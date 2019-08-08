@@ -23,10 +23,8 @@ export class NewItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitNewItem(toDoData): void {
-    let newId = Math.floor(Math.random() * Math.floor(9999));
+  public submitNewItem(toDoData): void {
     this.newItem.emit(<IToDoItem>{
-      id: newId,
       title: toDoData.title,
       description: toDoData.description,
       status: ToDoItemStatus.Open

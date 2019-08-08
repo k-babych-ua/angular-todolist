@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GithubService } from 'src/app/services/github.service';
+import { IUser } from 'src/app/models/entities/IUser';
 
 @Component({
   selector: 'app-about',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
+  user: IUser;
 
-  constructor() { }
+  constructor(
+    private githubService: GithubService
+  ) { }
 
   ngOnInit() {
+    this.getAboutData();
   }
 
+  public getAboutData(): void {
+    this.githubService.getUserInfo("k-babich95")
+      .then(user => {
+        console.log(user);
+        this.user = user;
+      });
+  }
 }
